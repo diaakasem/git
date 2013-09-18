@@ -12,7 +12,7 @@ app.post "/update/:repo", (req, res) ->
     res.send stdout
   sys = require "sys"
   exec = require("child_process").exec
-  exec "cd /dino/#{repo}/ && git pull -u && cd -", puts
+  exec "cd /dino/#{repo}/ ; git pull ; cd -", puts
   #
 # #######################################
 # Server Creation
