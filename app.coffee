@@ -8,16 +8,19 @@ app.configure ->
   app.set "port", 3333
 
 gitUpdate = (project, cb)->
-  process.exec "cd #{project}; git pull ; npm install; bower install; cd -", cb
+  command = "cd #{project}; git pull ; npm install; bower install; cd -"
+  console.log "Executing #{command}"
+  process.exec command, cb
 
 
 # for development purpose only ( Hg update )
 app.post "/update/:csvpath", (req, res) ->
   csvpath = req.params.csvpath
+  console.log csvpath
   cb = (error, stdout, stderr) ->
     res.send stdout
 
-  path = csvpath.replace ',', '/'
+  path = csvpath.replace /,/g, '/'
 
   gitUpdate path, cb
 
