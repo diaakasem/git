@@ -5,7 +5,7 @@ process = require "child_process"
 app     = express()
 
 app.configure ->
-  app.set "port", process.env.PORT or 3333
+  app.set "port", 3333
 
 gitUpdate = (project, cb)->
   process.exec "cd #{project}; git pull ; npm install; bower install; cd -", cb
