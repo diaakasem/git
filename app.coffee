@@ -8,16 +8,18 @@ app.configure ->
   app.set "port", process.env.PORT or 3333
 
 gitUpdate = (project, cb)->
-  process.exec "cd /dino/#{project}/ ; git pull ; cd -", cb
+  process.exec "cd #{project}; git pull ; npm install; bower install; cd -", cb
 
 
 # for development purpose only ( Hg update )
-app.post "/update/:repo", (req, res) ->
-  repo = req.params.repo
+app.post "/update/:csvpath", (req, res) ->
+  csvpath = req.params.csvpath
   cb = (error, stdout, stderr) ->
     res.send stdout
 
-  gitUpdate repo, cb
+  path = csvpath.replace ',', '/'
+
+  gitUpdate path, cb
 
 # #######################################
 # Server Creation

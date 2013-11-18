@@ -17,16 +17,17 @@
   });
 
   gitUpdate = function(project, cb) {
-    return process.exec("cd /dino/" + project + "/ ; git pull ; cd -", cb);
+    return process.exec("cd " + project + "; git pull ; npm install; bower install; cd -", cb);
   };
 
-  app.post("/update/:repo", function(req, res) {
-    var cb, repo;
-    repo = req.params.repo;
+  app.post("/update/:csvpath", function(req, res) {
+    var cb, csvpath, path;
+    csvpath = req.params.csvpath;
     cb = function(error, stdout, stderr) {
       return res.send(stdout);
     };
-    return gitUpdate(repo, cb);
+    path = csvpath.replace(',', '/');
+    return gitUpdate(path, cb);
   });
 
   http.createServer(app).listen(app.get("port"), function() {
