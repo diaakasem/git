@@ -8,7 +8,7 @@ app.configure ->
   app.set "port", 3333
 
 gitUpdate = (project, cb)->
-  command = "cd #{project}; git pull ; npm install; bower install; cd -"
+  command = "cd #{project}; git pull ; npm install; bower install --allow-root; cd -"
   console.log "Executing #{command}"
   process.exec command, cb
 

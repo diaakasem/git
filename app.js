@@ -13,20 +13,24 @@
   app = express();
 
   app.configure(function() {
-    return app.set("port", process.env.PORT || 3333);
+    return app.set("port", 3333);
   });
 
   gitUpdate = function(project, cb) {
-    return process.exec("cd " + project + "; git pull ; npm install; bower install; cd -", cb);
+    var command;
+    command = "cd " + project + "; git pull ; npm install; bower install --allow-root; cd -";
+    console.log("Executing " + command);
+    return process.exec(command, cb);
   };
 
   app.post("/update/:csvpath", function(req, res) {
     var cb, csvpath, path;
     csvpath = req.params.csvpath;
+    console.log(csvpath);
     cb = function(error, stdout, stderr) {
       return res.send(stdout);
     };
-    path = csvpath.replace(',', '/');
+    path = csvpath.replace(/,/g, '/');
     return gitUpdate(path, cb);
   });
 
