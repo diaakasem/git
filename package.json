@@ -1,31 +1,29 @@
 {
-    "name": "jqhub",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
-        "start": "nodemon app"
-    },
-    "dependencies"      : {
-        "express"           : "*",
-        "mongodb"           : "*",
-        "connect-mongo"     : "*",
-        "jshashes"          : "*",
-        "jsontool"          : "*",
-        "passport"          : "*",
-        "passport-facebook" : "*",
-        "passport-google"   : "*",
-        "passport-twitter"  : "*",
-        "cookie-sessions"   : "*",
-        "jasmine-node"      : "*",
-        "jade"              : "*"
-    },
-    "devDependencies": {
-        "grunt": "*",
-        "mocha": "*",
-        "grunt-simple-mocha": "*",
-        "supertest": "*"
-    },
-    "scripts": {
-        "test": "grunt"
-    }
+  "name": "jqhub",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "grunt"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongodb": "*",
+    "connect-mongo": "*",
+    "jshashes": "*",
+    "jsontool": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-google": "*",
+    "passport-twitter": "*",
+    "cookie-sessions": "*",
+    "jasmine-node": "*",
+    "jade": "*",
+    "nodemon": "~0.7.10"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "mocha": "*",
+    "grunt-simple-mocha": "*",
+    "supertest": "*"
+  }
 }
